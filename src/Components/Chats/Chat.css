@@ -34,6 +34,7 @@
   background-attachment: fixed;
   padding: 20px 10px;
   overflow-y: auto;
+  scroll-behavior: smooth;
 }
 .chat__message {
   position: relative;

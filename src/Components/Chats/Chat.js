@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./Chat.css";
 import { Avatar, IconButton } from "@material-ui/core";
 import SearchOutlinedIcon from "@material-ui/icons/SearchOutlined";
@@ -9,12 +9,13 @@ import MicIcon from "@material-ui/icons/Mic";
 import { useParams } from "react-router-dom";
 import db from "../../Config/firebase";
 import { useStateValue } from "../../Datalayer/StateProvider";
-
+import ScrollToBottom from "react-scroll-to-bottom";
 import firebase from "firebase";
 const Chat = () => {
   const [{ user }, dispatch] = useStateValue();
   const [seed, setSeed] = useState("");
   const [input, setInput] = useState("");
+  const ref = useRef(null);
 
   const { roomId } = useParams(); // getting the parameter passed as a url
 
@@ -53,6 +54,7 @@ const Chat = () => {
           // to add the timestamp of the server time
         });
       setInput("");
+      ref.current.scrollTo(0, ref.current.scrollHeight + 100);
     }
   };
   return (
@@ -82,7 +84,7 @@ const Chat = () => {
           </IconButton>
         </div>
       </div>
-      <div className="chat__body">
+      <div className="chat__body" ref={ref}>
         {messages.map((message, index) => {
           return (
             <p
