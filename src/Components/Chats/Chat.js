@@ -9,7 +9,6 @@ import MicIcon from "@material-ui/icons/Mic";
 import { useParams } from "react-router-dom";
 import db from "../../Config/firebase";
 import { useStateValue } from "../../Datalayer/StateProvider";
-import ScrollToBottom from "react-scroll-to-bottom";
 import firebase from "firebase";
 const Chat = () => {
   const [{ user }, dispatch] = useStateValue();
